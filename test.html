@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<div id="imageContainer" style="position: absolute; width:1280px; height:720px"></div>
+
+</body>
+</html>
+
+<script>
+    function loadImages(imageList, containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) {
+            console.error('Container not found');
+            return;
+        }
+
+        imageList.forEach((imageName, index) => {
+// Create container div for the image
+            const divWrapper = document.createElement('div');
+            divWrapper.style.position = 'absolute';
+            divWrapper.style.left = (Math.random()*50+25)+"%";
+            divWrapper.style.top = (Math.random()*50+25)+"%";
+            divWrapper.style.rotate = Math.random()*360+"deg";
+
+// Create the image element
+            const img = document.createElement('img');
+            img.src = imageName;
+            img.alt = `Image ${index + 1}`;
+            img.style.position = 'relative';
+
+
+// Set image size when loaded
+            img.onload = function() {
+                const containerWidth = divWrapper.offsetWidth;
+                const containerHeight = divWrapper.offsetHeight;
+                const widthPercentage = (this.naturalWidth / containerWidth)*10 ;
+                this.style.width = widthPercentage + '%';
+                this.style.height = 'auto';
+            };
+
+// Add image to its container
+            divWrapper.appendChild(img);
+// Add container to main container
+            container.appendChild(divWrapper);
+
+            startRandomRotation(divWrapper);
+
+        });
+    }
+
+    // Example usage:
+    let images = [
+
+    ];
+    for (var i=0; i<12; i++)
+    {
+        images.push("IMG_0"+(658+i).toString()+".png");
+    }
+
+    // Add this to your HTML:
+    // <div id="imageContainer"></div>
+
+    // Then call the function:
+    loadImages(images, 'imageContainer');
+
+
+
+
+
+    function startRandomRotation(element) {
+        let angle = 0;
+        let direction = Math.random() < 0.5 ? 1 : -1; // Random direction
+        let speed = (Math.random() * 0.2 + 0.1); // Random speed between 0.1 and 0.3 degrees per frame
+
+        function animate() {
+            angle += speed * direction;
+            element.style.transform = `rotate(${angle}deg)`;
+            requestAnimationFrame(animate);
+        }
+
+        // Start the animation
+        animate();
+    }
+
+
+</script>
