@@ -8,6 +8,7 @@
             margin: 0;
             overflow: hidden;
             cursor: none;
+            background: #000000;
         }
         #gameContainer {
             position: fixed;
@@ -15,7 +16,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #f0f0f0;
+            background: transparent;
         }
         .game-object {
             position: absolute;
@@ -27,7 +28,7 @@
             position: fixed;
             width: 20px;
             height: 20px;
-            background: rgba(255, 100, 100, 0.5);
+            background: rgb(51, 255, 240);
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
@@ -35,13 +36,13 @@
         }
     </style>
 </head>
-<body>
+<body style="background: linear-gradient(to bottom, #0B0B2B, #000033, #000000);">
     <div id="gameContainer"></div>
     <div id="cursor"></div>
 
     <script type="module">
         import { Game } from './pong.js';
-        
+
         // Start the game when the window loads
         window.addEventListener('load', () => {
             new Game();

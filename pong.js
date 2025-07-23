@@ -108,7 +108,7 @@ class Game {
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             // Apply force from cursor
-            if (distance < 150) {
+            if (distance < 200) {
                 const fx = dx / distance;
                 const fy = dy / distance;
                 obj.applyForce(fx, fy, distance);
