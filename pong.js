@@ -44,8 +44,8 @@ class GameObject {
         }
 
         // Apply friction
-        this.vx *= 0.99;
-        this.vy *= 0.99;
+        this.vx *= 0.9;
+        this.vy *= 0.9
         this.rotationSpeed *= 0.99;
 
         this.updatePosition();
@@ -108,7 +108,7 @@ class Game {
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             // Apply force from cursor
-            if (distance < 200) {
+            if (distance < 150) {
                 const fx = dx / distance;
                 const fy = dy / distance;
                 obj.applyForce(fx, fy, distance);
